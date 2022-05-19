@@ -1,0 +1,26 @@
+button {
+  background-color: getColour(secondary);
+  font-size: 1.4em;
+  border: none;
+  font-family: "catmaran" sans-serif;
+  font-weight: 800;
+  color: white;
+  box-shadow: getColour(third) 0px 3px 6px;
+}
+
+.logOutButton,
+.btn--cancel {
+  background-color: white;
+  color: black;
+  padding: 1em 4em;
+  border-radius: 16px;
+  box-shadow: getColour(third) 0px 3px 6px;
+}
+
+.logOutButton {
+  margin-top: 20px;
+}
+
+.logOutButton:hover {
+  background-color: darken(white, 5);
+}

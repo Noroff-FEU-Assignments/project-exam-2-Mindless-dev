@@ -1,0 +1,153 @@
+.accomodation {
+  max-width: 316px;
+  margin-bottom: 16px;
+  position: relative;
+  font-family: "poppins", sans-serif;
+  &__title {
+    font-family: "catmaran", sans-serif;
+    font-weight: 500;
+  }
+  &__price {
+    background-color: white;
+    padding: 1em;
+    max-width: 110px;
+  }
+  &__description {
+    font-weight: 300;
+    height: 140px;
+  }
+
+  a {
+    color: (getColour(secondary));
+    font-style: italic;
+    text-decoration: none;
+    font-size: 1.1em;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.accomodationDetailed {
+  flex-direction: column;
+  max-width: 400px;
+  margin: 50px auto;
+
+  &__information {
+    background-color: white;
+    max-width: 673px;
+    padding: 1em;
+  }
+
+  &__title {
+    text-align: left;
+  }
+  &__subHeading {
+    font-family: "poppins", sans-serif;
+    font-weight: 400;
+  }
+
+  &__priceAmmeneties {
+    @media (min-width: 1310px) {
+      height: 230px;
+      margin-bottom: 1em;
+      display: flex;
+    }
+  }
+  &__ammeneties--hidden {
+    display: none;
+  }
+
+  &,
+  &__imageThumbnails {
+    display: flex;
+  }
+
+  &__btn {
+    display: flex;
+    text-align: center;
+    margin: 20px auto;
+    padding: 0.7em 5em;
+  }
+  &__btn:hover {
+    background-color: darken(getColour(secondary), 5);
+  }
+
+  @media (min-width: 1310px) {
+    flex-direction: row;
+    max-width: 1310px;
+
+    &__information {
+      padding: 0em 3em;
+    }
+
+    &__images {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+
+    &__imageThumbnails {
+      flex-direction: column;
+    }
+
+    &__btn {
+      margin: 0px;
+      padding: 0.6em 4em;
+    }
+
+    .amenity {
+      height: 40px;
+      margin: 0px;
+    }
+
+    .accomodationDetailed__subHeading {
+      margin-bottom: 0px;
+    }
+
+    .ammeneties {
+      margin: 0 auto;
+    }
+
+    .accomodationDetailed__priceAmmeneties {
+      height: 230px;
+      margin-bottom: 1em;
+      display: flex;
+      justify-content: flex-start;
+    }
+  }
+}
+
+.ammeneties {
+  .amenity--hidden {
+    display: none;
+  }
+}
+.amenity {
+  display: flex;
+  &__icon {
+    margin: 23px 8px 16px 0px;
+    font-size: 1.2em;
+    color: getColour(secondary);
+  }
+  p {
+    font-size: 1.2em;
+  }
+}
+
+.imageThumbnail {
+  &,
+  &--active {
+    max-height: 125px;
+    margin: 16px 16px 16px 0px;
+  }
+  &--active {
+    border: solid 3px getColour(secondary);
+  }
+
+  @media (min-width: 1310px) {
+    &,
+    &--active {
+      margin: 0px 16px 16px 0px;
+    }
+  }
+}

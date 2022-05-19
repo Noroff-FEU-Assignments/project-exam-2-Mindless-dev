@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@400;500;800&family=Poppins:ital,wght@0,300;0,400;0,800;1,400&display=swap");
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Catmaran", sans-serif;
+  background-color: getColour(primary);
+  box-sizing: border-box;
+}
+
+.layoutContainer {
+  margin: 10px;
+  max-width: 1310px;
+  align-items: center;
+  min-height: 100vh;
+
+  @media (min-width: 1315px) {
+    margin: auto;
+  }
+}
+
+footer {
+  text-align: center;
+  font-family: "poppins", sans-serif;
+  font-weight: 300;
+  font-size: 1.25em;
+  margin-top: 20px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  font-size: 4em;
+  i {
+    color: getColour(secondary);
+    animation-name: loading;
+    animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes loading {
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,50 @@
+.accomodationContainer,
+.accomodationsFeatured {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 313px);
+  justify-content: center;
+  grid-gap: 32px 19px;
+}
+
+.accomodationsRelated {
+  display: flex;
+  max-width: 322px;
+  flex-direction: column;
+  margin: auto;
+  &__subheading {
+    text-align: center;
+  }
+  @media (min-width: 1310px) {
+    max-width: inherit;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 313px);
+    justify-content: center;
+    grid-gap: 32px 19px;
+    &__subheading {
+      margin-top: 50px;
+      text-align: left;
+    }
+  }
+}
+.accomodationsFeatured__heading,
+.bergenActivites__heading {
+  text-align: center;
+  @media (min-width: 1315px) {
+    text-align: left;
+  }
+}
+.bergenActivites__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 313px);
+  grid-gap: 16px;
+  justify-content: center;
+
+  @media (min-width: 1295px) {
+    grid-template-columns: repeat(auto-fit, 400px);
+    grid-gap: 46px;
+  }
+}
+
+.accomodationsRelated {
+  margin-top: 32px;
+}

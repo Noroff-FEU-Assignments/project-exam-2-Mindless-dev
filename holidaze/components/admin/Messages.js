@@ -1,6 +1,7 @@
 import { BASE_URL, CONTACT_PATH } from "../../constants/api";
-//import axios from "axios";
 import { useEffect, useState } from "react";
+import { Loading } from "../loading/Loading";
+import { Error } from "../errors/Error";
 
 export function Messages() {
   const [messages, setMessages] = useState([]);
@@ -13,16 +14,14 @@ export function Messages() {
       try {
         const response = await fetch(url);
         const json = await response.json();
-        console.log(json);
 
         if (response.ok) {
           setMessages(json);
-          console.log(messages.title);
         } else {
           setError("an error occured");
         }
       } catch (error) {
-        setError(error.toString());
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -31,25 +30,36 @@ export function Messages() {
   }, []);
 
   if (loading) {
-    return <div>loading</div>;
+    return <Loading />;
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <Error errorType="error">An Error occured, please refresh the page</Error>;
   }
 
   return (
-    <>
+    <div className="contactMessages">
       {messages.map(function (message) {
         return (
-          <div key={message.id}>
-            <p>{message.name}</p>
-            <p>{message.email}</p>
-            <p>{message.subject}</p>
-            <p>{message.message}</p>
+          <div key={message.id} className="contactMessage">
+            <div className="contactMessage__info">
+              <p>
+                <span className="contactMessage__title--bold">Name:</span> {message.name}
+              </p>
+              <p>
+                <span className="contactMessage__title--bold">Email:</span> {message.email}
+              </p>
+              <p>
+                <span className="contactMessage__title--bold">Subject:</span> {message.subject}
+              </p>
+            </div>
+            <div className="contactMessage__info">
+              <p className="contactMessage__title--bold">Message:</p>
+              <p>{message.message}</p>
+            </div>
           </div>
         );
       })}
-    </>
+    </div>
   );
 }

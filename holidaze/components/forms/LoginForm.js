@@ -6,11 +6,13 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import AuthContext from "../../context/Authorzation";
 import { useRouter } from "next/router";
+import { Error } from "../errors/Error";
 
 const schema = yup.object().shape({
   identifier: yup.string().required("Please enter a username"),
   password: yup.string().required("please enter a Password"),
 });
+
 export function LoginForm() {
   const [loginError, setLoginError] = useState(null);
   const [loggingIn, setLoggingIn] = useState(false);
@@ -27,26 +29,31 @@ export function LoginForm() {
 
   async function onSubmit(data) {
     try {
-      setLoggingIn("logging in ");
+      setLoggingIn("logging in.. ");
       const url = BASE_URL + AUTH_PATH;
       const response = await axios.post(url, data);
       setAuthorization(response.data);
       path.push("/admin");
     } catch (error) {
-      setLoginError("invalid username or password");
+      setLoginError("invalid password or username");
     }
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <p>{loginError}</p>
-      <label htmlFor="userName">username</label>
-      <input {...register("identifier")} id="userName" />
-      {errors.username && <p className="form__error">{errors.username.message}</p>}
-      <label htmlFor="password">Password</label>
-      <input type="password" {...register("password")} id="password" />
-      {errors.password && <p className="form_error">{errors.password.message}</p>}
-      <button>{loggingIn}</button>
+    <form className="login__form" onSubmit={handleSubmit(onSubmit)}>
+      <Error errorType="error">{loginError}</Error>
+      <label className="login__label" htmlFor="userName">
+        Username
+      </label>
+      <input className="login__input" {...register("identifier")} id="userName" />
+
+      <Error errorType="form__warning">{errors.identifier && errors.identifier.message}</Error>
+      <label className="login__label" htmlFor="password">
+        Password
+      </label>
+      <input className="login__input" type="password" {...register("password")} id="password" />
+      <Error errorType="form__warning">{errors.password && errors.password.message}</Error>
+      <button className="login__btn">{loggingIn ? loggingIn : "Log In"}</button>
     </form>
   );
 }

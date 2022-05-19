@@ -1,0 +1,98 @@
+.modal--hidden {
+  display: none;
+}
+
+.modal {
+  display: flex;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: #ffffffcb;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  overflow: scroll;
+
+  &__description {
+    padding: 5em;
+  }
+}
+
+.modalContainer {
+  display: flex;
+  flex-direction: column-reverse;
+  background-color: rgb(255, 255, 255);
+  max-width: 320px;
+  margin: auto;
+  padding: 1em;
+
+  @media (min-width: 1310px) {
+    flex-direction: row;
+    max-width: 1310px;
+  }
+}
+
+.modal {
+  &__accomodationInfo {
+    background-color: getColour(primary);
+    margin-bottom: 10px;
+    padding: 1em;
+  }
+
+  &__form {
+    max-width: 100%;
+    margin: 10px;
+  }
+  &__input--hidden {
+    display: none;
+  }
+
+  &__input {
+    height: 50px;
+  }
+
+  &__btnContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+  }
+
+  &__btn,
+  &__btn--cancel {
+    width: 215px;
+    padding: 1em 0em;
+    margin: 16px;
+  }
+
+  &__btn--confirm {
+    padding: 1em 4.3em;
+  }
+  &__btn--cancel {
+    background-color: white;
+    color: black;
+  }
+
+  &__btn:hover,
+  &__btn--confirm:hover {
+    background-color: darken(getColour(secondary), 5);
+  }
+
+  &__btn--cancel:hover {
+    background-color: darken(white, 5);
+  }
+
+  &__select {
+    background-color: getColour(primary);
+    border: none;
+    height: 50px;
+  }
+  @media (min-width: 1310px) {
+    &__accomodationInfo {
+      max-width: 630px;
+      margin: 1em;
+    }
+    &__form {
+      width: 537px;
+    }
+  }
+}

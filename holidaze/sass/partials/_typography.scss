@@ -1,0 +1,32 @@
+h1,
+h2,
+h3,
+h4 {
+  font-family: "catmaran", sans-serif;
+  font-weight: 400;
+}
+
+h1 {
+  text-align: center;
+}
+
+label,
+.nav__item {
+  font-family: "poppins", sans-serif;
+  font-weight: 400;
+
+  &--active {
+    font-weight: 800;
+  }
+}
+
+button {
+  font-family: "catmaran", sans-serif;
+  font-weight: 800;
+}
+
+p,
+input {
+  font-family: "poppins", sans-serif;
+  font-weight: 300;
+}

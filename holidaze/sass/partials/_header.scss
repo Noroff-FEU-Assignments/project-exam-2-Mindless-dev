@@ -1,0 +1,94 @@
+header {
+  position: relative;
+  @media (min-width: 900px) {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+}
+.nav {
+  position: absolute;
+  display: flex;
+  background-color: getColour(third);
+  width: 100%;
+  justify-content: center;
+  z-index: 10;
+
+  &__inner {
+    padding: 0;
+  }
+  &--hidden {
+    display: none;
+  }
+  &__item,
+  &__item--active,
+  &__search {
+    margin: 25px;
+    list-style: none;
+  }
+  &__search {
+    margin: 20px 25px;
+  }
+
+  &__item,
+  &__item--active {
+    a {
+      text-align: center;
+      color: getColour(secondary);
+      text-decoration: none;
+      font-family: "poppins", sans-serif;
+      font-weight: 400;
+      font-size: 1.875em;
+    }
+  }
+  &__item--active {
+    a {
+      font-weight: 800;
+      color: darken(getColour(secondary), 5);
+    }
+  }
+
+  @media (min-width: 900px) {
+    width: inherit;
+    &--hidden,
+    & {
+      display: inline-block;
+      position: relative;
+      background: none;
+    }
+
+    &__inner {
+      display: flex;
+      padding: 0;
+    }
+    &__item,
+    &__item--active {
+      margin: 25px 10px;
+      list-style: none;
+      a {
+        font-size: 1.25em;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.hamburgerMenu {
+  color: getColour(secondary);
+  float: right;
+  font-size: 3em;
+  background: none;
+  border: none;
+  margin: 15px;
+  box-shadow: none;
+
+  @media (min-width: 900px) {
+    display: none;
+  }
+}
+
+.logo {
+  margin: 10px;
+}

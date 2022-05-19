@@ -1,0 +1,43 @@
+.contactMessages,
+.enquiryContainer {
+  background-color: white;
+  padding: 0.25em;
+  margin: 20px 0px;
+}
+
+.contactMessage {
+  justify-content: space-evenly;
+  &__title--bold {
+    font-weight: 500;
+  }
+}
+
+.enquiry {
+  margin: 16px;
+  background-color: getColour(third);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  justify-content: center;
+  p {
+    margin: 0px;
+  }
+  &__container {
+    margin: 10px;
+  }
+  &__title--bold {
+    font-weight: 500;
+  }
+
+  justify-content: center;
+  @media (min-width: 655px) {
+    justify-content: end;
+  }
+}
+
+.enquiry,
+.contactMessage {
+  margin: 16px;
+  background-color: getColour(third);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+}

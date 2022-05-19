@@ -1,0 +1,62 @@
+.intro {
+  margin: 60px auto;
+  &__image {
+    background-image: url("../../images/backgroundimages/secondheroimage.jpg");
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: auto;
+
+    @media (min-width: 700px) {
+      height: 600px;
+      background-position: center center;
+    }
+  }
+  padding-bottom: 1.5em;
+  background-color: white;
+  &__text {
+    margin: 10px auto 20px auto;
+    max-width: 775px;
+    text-align: center;
+  }
+  &__container {
+    padding: 2em 0em;
+  }
+}
+
+.heroImage {
+  background-image: url("../../images/backgroundimages/bryggenheroimageMobile.jpg");
+  height: 321px;
+  background-repeat: no-repeat;
+  margin-bottom: 20px;
+
+  @media (min-width: 700px) {
+    background-image: url("../../images/backgroundimages/bryggenheroimage.jpg");
+    background-position: center center;
+    height: 90vh;
+  }
+}
+
+.accomodationsFeatured {
+  display: flex;
+  justify-content: center;
+}
+
+.bergenActivities {
+  &__image1,
+  &__image2,
+  &__image3 {
+    height: 217px;
+    background-repeat: no-repeat;
+    display: flex;
+  }
+  &__image1 {
+    background-image: url("../../images/backgroundimages/boatTrips.jpg");
+  }
+  &__image2 {
+    background-image: url("../../images/backgroundimages/hiking.jpg");
+  }
+  &__image3 {
+    background-image: url("../../images/backgroundimages/cultureandShopping.jpg");
+  }
+}

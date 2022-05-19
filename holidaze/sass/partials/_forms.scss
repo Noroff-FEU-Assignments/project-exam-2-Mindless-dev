@@ -1,0 +1,309 @@
+.form__warning {
+  color: white;
+  text-align: center;
+  p {
+    background-color: rgb(230, 75, 75);
+  }
+}
+.contact {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: white;
+  max-width: 1088px;
+  margin: auto;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    max-width: 1300px;
+    padding-top: 20px;
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+  }
+  &__input {
+    border: none;
+    height: 50px;
+    width: 300px;
+    border-radius: 16px;
+    background-color: getColour(third);
+    font-size: 1em;
+    font-family: "poppins", sans-serif;
+  }
+  &__btn {
+    background-color: getColour(secondary);
+    color: white;
+    font-size: 1.2em;
+    padding: 1em 4em;
+    font-family: "catmaran", sans-serif;
+    font-weight: 900;
+    margin: 20px auto;
+    border: none;
+    box-shadow: getColour(primary) 0px 3px 6px;
+  }
+
+  &__btn:hover {
+    background-color: darken(getColour(secondary), 5);
+  }
+
+  &__textarea {
+    border: none;
+    height: 170px;
+    border-radius: 16px;
+    background-color: getColour(third);
+    font-size: 1em;
+    font-family: "poppins", sans-serif;
+    width: 300px;
+  }
+  &__label {
+    font-size: 1em;
+    font-size: "poppins", sans-serif;
+    margin-left: 0.4em;
+  }
+
+  @media (min-width: 500px) {
+    &__input,
+    &__textarea {
+      width: 437px;
+    }
+  }
+
+  &__info {
+    background-color: getColour(primary);
+  }
+
+  @media (min-width: 500px) {
+    &__form {
+      padding: 40px 0px;
+    }
+  }
+
+  @media (min-width: 904px) {
+    justify-content: space-evenly;
+  }
+}
+
+.contact__info {
+  align-self: center;
+  margin-bottom: 1em;
+  &__section {
+    display: flex;
+    margin: 10px;
+  }
+
+  &__icon {
+    color: getColour(secondary);
+    margin: 5px 10px;
+    font-size: 2.5em;
+  }
+  &__logo {
+    background-image: url("../../images/logo/holidazeLogo.svg");
+    height: 100px;
+    width: 100px;
+    margin: 40px auto auto auto;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  @media (min-width: 500px) {
+    padding: 4em;
+  }
+}
+
+.holidazeLogo {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+.contact__success {
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.623);
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__bg {
+    background-color: getColour(primary);
+    padding: 2em;
+  }
+  &__message {
+    text-align: center;
+    font-size: 1.4em;
+    padding: 1em;
+  }
+
+  &--hidden {
+    display: none;
+  }
+}
+
+form {
+  background-color: white;
+
+  input {
+    background-color: getColour(primary);
+    border: none;
+    border-radius: 16px;
+  }
+}
+
+/*__________ login ___________*/
+
+.login {
+  &__form {
+    max-width: 354px;
+    height: 486px;
+    margin: auto;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+  }
+
+  &__input {
+    width: 90%;
+    align-self: center;
+    height: 50px;
+    margin: 5px auto 20px auto;
+    font-size: 1em;
+    font-family: "poppins", sans-serif;
+  }
+
+  &__btn {
+    width: 90%;
+    align-self: center;
+    padding: 1em 2em;
+  }
+
+  &__btn:hover {
+    background-color: darken(getColour(secondary), 5);
+  }
+
+  &__label {
+    margin-left: 20px;
+    margin-bottom: 6px;
+    font-family: "poppins", sans-serif;
+    font-weight: 400;
+    font-size: 1.4em;
+  }
+}
+
+/*________modal_______*/
+.modal__form {
+  display: flex;
+  flex-direction: column;
+
+  &--hidden {
+    display: none;
+  }
+}
+
+.accomodationForm {
+  flex-direction: column;
+}
+
+.modal__success--hidden {
+  display: none;
+}
+.modal__success {
+  background-color: getColour(primary);
+  padding: 1em;
+  align-self: center;
+
+  @media (min-width: 1310px) {
+    margin: 1em;
+  }
+}
+
+.modal {
+  &__successTitle {
+    font-weight: 500;
+  }
+}
+/*____accomodation form_____*/
+
+.accomodationForm {
+  position: relative;
+  &__success {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.623);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__bg {
+      background-color: getColour(primary);
+      padding: 2em;
+    }
+    &__message {
+      text-align: center;
+      font-size: 1.4em;
+      padding: 1em;
+    }
+    &--hidden {
+      display: none;
+    }
+  }
+}
+
+.accomodationForm {
+  padding: 1em;
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__container {
+    flex-direction: row;
+    justify-content: space-evenly;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__input {
+    height: 50px;
+  }
+  &__layout {
+    max-width: 300px;
+    margin: 16px;
+  }
+
+  &__uploadBtn,
+  &__submitBtn {
+    margin: 10px auto;
+    padding: 0.5em 2em;
+    display: flex;
+    box-shadow: getColour(primary) 0px 3px 6px;
+  }
+
+  &__uploadBtn:hover,
+  &__submitBtn:hover {
+    background-color: darken(getColour(secondary), 5);
+  }
+
+  &__textarea {
+    background-color: getColour(primary);
+    border: none;
+    border-radius: 16px;
+    min-height: 100px;
+  }
+
+  &__ammeneties {
+    margin: 20px 0px;
+  }
+
+  &__featured {
+    font-size: 1.3em;
+  }
+}
