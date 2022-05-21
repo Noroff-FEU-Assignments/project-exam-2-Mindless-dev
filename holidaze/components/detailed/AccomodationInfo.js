@@ -10,7 +10,7 @@ export function AccomodationInfo({ title, description, price, wifi, parking, bre
       <div className="accomodationDetailed__priceAmmeneties">
         <div className="price">
           <h2 className="accomodationDetailed__subHeading">Price</h2>
-          <p className="accomodationDetailed__price">{price} Kr/per night</p>
+          <p className="accomodationDetailed__price">From {price} Kr/per night</p>
         </div>
         <div className="ammeneties">
           <h2 className="accomodationDetailed__subHeading">Ammeneties</h2>
