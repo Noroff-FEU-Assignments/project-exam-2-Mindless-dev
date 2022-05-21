@@ -1,4 +1,4 @@
-import PropTypes, { string } from "prop-types";
+import PropTypes from "prop-types";
 
 export function Error({ errorType, children }) {
   return (
@@ -10,5 +10,4 @@ export function Error({ errorType, children }) {
 
 Error.propTypes = {
   errorType: PropTypes.string,
-  children: PropTypes.string,
 };

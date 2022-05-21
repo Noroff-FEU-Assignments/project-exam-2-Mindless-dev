@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { useState } from "react";
-import { Modal } from "./Modal";
 import PropTypes from "prop-types";
 import { AccomodationInfo } from "./AccomodationInfo";
+import { Modal } from "./Modal";
 
 export function AccomodationDetailed({
   title,

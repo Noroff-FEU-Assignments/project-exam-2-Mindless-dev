@@ -15,5 +15,3 @@ export function useDisplay() {
 
   return [display, toggleDisplay];
 }
-
-//something is not okay with this one mabye

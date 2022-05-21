@@ -24,3 +24,20 @@ button {
 .logOutButton:hover {
   background-color: darken(white, 5);
 }
+
+.linkBtn {
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+
+  a {
+    background-color: getColour(secondary);
+    text-decoration: none;
+    color: white;
+    padding: 1.5em 4em;
+    box-shadow: getColour(third) 0px 3px 6px;
+  }
+  a:hover {
+    background-color: darken(getColour(secondary), 5);
+  }
+}

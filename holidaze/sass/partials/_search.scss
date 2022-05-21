@@ -4,7 +4,7 @@
     width: 100%;
     border: none;
     padding: 0;
-    text-align: center;
+    text-indent: 37px;
     height: 42px;
     border-radius: 9px;
   }
@@ -29,6 +29,7 @@
   padding: 0;
   list-style: none;
   top: 36px;
+  z-index: 1;
 
   &--hidden {
     display: none;
@@ -69,7 +70,8 @@
     border: none;
     border-radius: 16px;
     width: 100%;
-    text-align: center;
+    text-indent: 58px;
+    font-size: 1.2em;
   }
 
   @media (min-width: 666px) {

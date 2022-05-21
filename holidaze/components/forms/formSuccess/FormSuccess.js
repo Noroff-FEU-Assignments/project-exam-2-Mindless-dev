@@ -1,4 +1,6 @@
-export function FormSucess({ children, messageType }) {
+import Proptypes from "prop-types";
+
+export function FormSuccess({ children, messageType }) {
   return (
     <div className={messageType}>
       <div className={messageType + "__bg"}>
@@ -7,3 +9,7 @@ export function FormSucess({ children, messageType }) {
     </div>
   );
 }
+
+FormSuccess.propTypes = {
+  messageType: Proptypes.string,
+};

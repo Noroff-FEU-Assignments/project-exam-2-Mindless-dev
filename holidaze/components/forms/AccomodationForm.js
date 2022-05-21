@@ -1,24 +1,30 @@
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Error } from "../errors/Error";
-import { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import { useState, useContext } from "react";
 import { BASE_URL, ACCOMODATION_PATH } from "../../constants/api";
-import { useContext } from "react";
 import AuthContext from "../../context/Authorzation";
-import { FormSucess } from "./formSuccess/FormSuccess";
-import { useCloudinaryWidget } from "../../hooks/useCloudinaryWidget";
+import { FormSuccess } from "./formSuccess/FormSuccess";
+import { Error } from "../errors/Error";
 
 const schema = yup.object().shape({
-  title: yup.string().required("Please input Accomodation Title").min(8, "The title must be over 8 characters"),
-  description: yup.string().required("Please enter a description").min(20, "the message must be over 20 characters"),
-  price: yup.number("please input a number").required("please enter a Price").min(99, "the price must be over 99kr"),
-  imageurl1: yup.string(),
-  imageurl2: yup.string(),
-  imagealt1: yup.string("please describe image 1").required().min(10, "image description must be a minimum of 10 characters"),
-  imagealt2: yup.string("please describe the second image").required().min(10, "image description must be a minimum of 10 characters"),
-  resuturant: yup.boolean(),
+  title: yup.string().required("Please enter a accomodation title").min(8, "The title must be over 8 characters"),
+  description: yup.string().required("Please enter a description").min(20, "The description must be over 20 characters"),
+  price: yup.number().required("please enter a Price").min(99, "The price must be over 99kr").typeError("Please enter a price"),
+  image1: yup.mixed().test("imageUpload", "please upload a accomodation Image", (value) => {
+    if (value.length != 0 && value[0].type === "image/jpeg") {
+      return value;
+    }
+  }),
+  image2: yup.mixed().test("imageUpload", "please upload a room image", (value) => {
+    if (value.length != 0 && value[0].type === "image/jpeg") {
+      return value;
+    }
+  }),
+  imagealt1: yup.string().required("please describe the accomodation image").min(10, "image description must be a minimum of 10 characters"),
+  imagealt2: yup.string().required("please describe the room image").min(10, "image description must be a minimum of 10 characters"),
+  resturant: yup.boolean(),
   wifi: yup.boolean(),
   breakfast: yup.boolean(),
   parking: yup.boolean(),
@@ -28,8 +34,8 @@ const schema = yup.object().shape({
 export function AccomodationForm() {
   const [error, setError] = useState(null);
   const [Authorzation, setAuthorization] = useContext(AuthContext);
-  const [widget, widget2, secondImage, setSecondImage, mainImage, setMainImage] = useCloudinaryWidget();
   const [hidden, sethidden] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
 
   const {
     register,
@@ -41,10 +47,27 @@ export function AccomodationForm() {
   });
 
   async function onSubmit(data) {
+    setSubmitting(true);
     const url = BASE_URL + ACCOMODATION_PATH;
-    data.imageurl1 = mainImage;
-    data.imageurl2 = secondImage;
-    console.log(data);
+    const formData = new FormData();
+
+    const nonFileData = {
+      title: data.title,
+      price: data.price,
+      description: data.description,
+      resturant: data.resturant,
+      breakfast: data.breakfast,
+      wifi: data.wifi,
+      parking: data.parking,
+      featured: data.featured,
+      imagealt1: data.imagealt1,
+      imagealt2: data.imagealt2,
+    };
+
+    formData.append(`data`, JSON.stringify(nonFileData));
+    formData.append("files.images", data.image2[0], data.image2[0].name);
+    formData.append("files.images", data.image1[0], data.image1[0].name);
+
     try {
       const options = {
         headers: {
@@ -52,15 +75,13 @@ export function AccomodationForm() {
         },
       };
 
-      const response = await axios.post(url, data, options);
-      console.log(response);
-      if (response.status === 200) {
-        sethidden(false);
+      const response = await axios.post(url, formData, options);
 
+      if (response.status === 200) {
+        setSubmitting(false);
+        sethidden(false);
         setTimeout(() => {
           reset();
-          setMainImage("");
-          setSecondImage("");
           sethidden(true);
         }, 3000);
       }
@@ -111,51 +132,34 @@ export function AccomodationForm() {
           <div className="accomodationForm__layout">
             <div className="accomodationForm__group">
               <label htmlFor="image1">Accomodation Image</label>
-              <input className="accomodationForm__input" {...register("imageurl1")} id="image1" disabled defaultValue={mainImage} />
-              <Error errorType="form__warning">{errors.imageurl1 && errors.imageurl1.message}</Error>
-              <button
-                className="accomodationForm__uploadBtn"
-                onClick={() => {
-                  widget.open();
-                }}
-                type="button"
-              >
-                Upload Image
-              </button>
+              <input type="file" className="accomodationForm__fileInput" {...register("image1")} id="image1" />
+              <Error errorType="form__warning">{errors.image1 && errors.image1.message}</Error>
             </div>
+
             <div className="accomodationForm__group">
-              <label htmlFor="imagealt1">Accomodation room image description</label>
+              <label htmlFor="imagealt1">Accomodation image description</label>
               <input className="accomodationForm__input" {...register("imagealt1")} id="imagealt1" />
               <Error errorType="form__warning"> {errors.imagealt1 && errors.imagealt1.message}</Error>
             </div>
             <div className="accomodationForm__group">
-              <label htmlFor="image2">Accomodation room Image </label>
-              <input className="accomodationForm__input" {...register("imageurl2")} id="image2" defaultValue={secondImage} />
-              <Error errorType="form__warning">{errors.imageurl2 && errors.imageurl2.message}</Error>
-              <button
-                className="accomodationForm__uploadBtn"
-                onClick={() => {
-                  widget2.open();
-                }}
-                type="button"
-              >
-                Upload image
-              </button>
+              <label htmlFor="image2"> Room Image </label>
+              <input type="file" className="accomodationForm__fileInput" {...register("image2")} id="image2" />
+              <Error errorType="form__warning">{errors.image2 && errors.image2.message}</Error>
             </div>
             <div className="accomodationForm__group">
-              <label htmlFor="imagealt2">Accomodation Image Room Description</label>
+              <label htmlFor="imagealt2">Room Image Description</label>
               <input className="accomodationForm__input" {...register("imagealt2")} id="imagealt2" />
               <Error errorType="form__warning">{errors.imagealt2 && errors.imagealt2.message}</Error>
             </div>
           </div>
         </div>
         <button type="submit" className="accomodationForm__submitBtn">
-          Create Accomodation
+          {submitting ? "Creating Accomodation.." : "Create Accomodation"}
         </button>
       </form>
-      <FormSucess messageType={hidden ? "accomodationForm__success--hidden" : "accomodationForm__success"}>
+      <FormSuccess messageType={hidden ? "accomodationForm__success--hidden" : "accomodationForm__success"}>
         New accomodation created successfully
-      </FormSucess>
+      </FormSuccess>
     </>
   );
 }

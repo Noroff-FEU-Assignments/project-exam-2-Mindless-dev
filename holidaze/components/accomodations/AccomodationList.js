@@ -20,8 +20,8 @@ export function AccomodationList() {
         const response = await axios.get(url);
 
         if (response.status === 200) {
-          setAccomodations(response.data);
           setSearchResults(response.data);
+          setAccomodations(response.data);
         }
       } catch (error) {
         setError(true);
@@ -34,9 +34,10 @@ export function AccomodationList() {
 
   function searchFunctionality() {
     const searchValue = event.target.value.trim().toLowerCase();
-    const filterBySearch = accomodations.filter((accomodation) => {
+    const searchFilter = accomodations.filter((accomodation) => {
       const name = accomodation.title.toLowerCase();
-      if (name.startsWith(searchValue)) {
+      const description = accomodation.description;
+      if (name.startsWith(searchValue) || description.includes(searchValue)) {
         return true;
       }
 
@@ -44,7 +45,7 @@ export function AccomodationList() {
         return true;
       }
     });
-    setSearchResults(filterBySearch);
+    setSearchResults(searchFilter);
   }
 
   if (loading) {
@@ -75,7 +76,7 @@ export function AccomodationList() {
                 key={accomodation.id}
                 id={accomodation.id}
                 title={accomodation.title}
-                image={!accomodation.imageurl1 ? accomodation.images[0].url : accomodation.imageurl1}
+                image={accomodation.images[0].url}
                 imageAlt={accomodation.imagealt1}
                 price={accomodation.price}
                 description={accomodation.description}

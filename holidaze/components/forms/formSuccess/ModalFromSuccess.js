@@ -1,4 +1,4 @@
-export function ModalFormSucess({ display, resetModal, name, guests, from, to, email }) {
+export function ModalFormSuccess({ display, resetModal, name, guests, from, to, email }) {
   return (
     <div className={display ? "modal__success" : "modal__success--hidden"}>
       <h2>Summary</h2>

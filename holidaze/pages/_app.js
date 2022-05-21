@@ -7,7 +7,6 @@ function MyApp({ Component, pageProps }) {
       <AuthorizationProvider>
         <Component {...pageProps} />
       </AuthorizationProvider>
-      <Script src="https://upload-widget.cloudinary.com/global/all.js" strategy="beforeInteractive" />;
     </>
   );
 }

@@ -1,9 +1,9 @@
-import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { BASE_URL, AUTH_PATH } from "../../constants/api";
-import { useState, useContext } from "react";
 import axios from "axios";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useState, useContext } from "react";
+import { BASE_URL, AUTH_PATH } from "../../constants/api";
 import AuthContext from "../../context/Authorzation";
 import { useRouter } from "next/router";
 import { Error } from "../errors/Error";
@@ -36,12 +36,13 @@ export function LoginForm() {
       path.push("/admin");
     } catch (error) {
       setLoginError("invalid password or username");
+      setLoggingIn(false);
     }
   }
 
   return (
     <form className="login__form" onSubmit={handleSubmit(onSubmit)}>
-      <Error errorType="error">{loginError}</Error>
+      <Error errorType="form__warning">{loginError}</Error>
       <label className="login__label" htmlFor="userName">
         Username
       </label>

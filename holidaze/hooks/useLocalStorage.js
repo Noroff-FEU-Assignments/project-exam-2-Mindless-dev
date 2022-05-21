@@ -38,5 +38,3 @@ export default function useLocalStorage(key, initialValue) {
   };
   return [storedValue, setValue];
 }
-
-//okay from conor need to add link to report and wirte he said it was okay

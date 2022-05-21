@@ -1,41 +1,13 @@
 import axios from "axios";
+import Head from "next/head";
 import { BASE_URL, ACCOMODATION_PATH } from "../../constants/api";
 import { Layout } from "../../components/layouts/Layout";
-import { useState } from "react";
-import Head from "next/head";
-import { useEffect } from "react";
 import { AccomodationDetailed } from "../../components/detailed/AccomodationDetailed";
 import { LayoutContainer } from "../../components/layouts/LayoutContainer";
 import Proptypes, { object } from "prop-types";
-
 import { AccomodationsRelated } from "../../components/accomodations/AccomodationsRelated";
 
 export default function AccomodationSpecific({ accomodation }) {
-  const [parking, setParking] = useState(false);
-  const [wifi, setWifi] = useState(false);
-  const [resturant, setResturant] = useState(false);
-  const [breakfast, setBreakfast] = useState(false);
-  const [related, setRelated] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (accomodation.wifi) {
-      setWifi(true);
-    }
-    if (accomodation.parking) {
-      setParking(true);
-    }
-
-    if (accomodation.resturant) {
-      setResturant(true);
-    }
-
-    if (accomodation.breakfast) {
-      setBreakfast(true);
-    }
-  }, []);
-
   return (
     <>
       <Head>
@@ -49,16 +21,16 @@ export default function AccomodationSpecific({ accomodation }) {
         <LayoutContainer>
           <AccomodationDetailed
             title={accomodation.title}
-            hotelImage={!accomodation.imageurl1 ? accomodation.images[0].url : accomodation.imageurl1}
+            hotelImage={accomodation.images[0].url}
             hotelImageAlt={accomodation.imagealt1}
-            roomImage={!accomodation.imageurl2 ? accomodation.images[1].url : accomodation.imageurl2}
+            roomImage={accomodation.images[1].url}
             roomImageAlt={accomodation.imagealt2}
             description={accomodation.description}
             price={accomodation.price}
-            wifi={wifi}
-            parking={parking}
-            resturant={resturant}
-            breakfast={breakfast}
+            wifi={accomodation.wifi}
+            parking={accomodation.parking}
+            resturant={accomodation.resturant}
+            breakfast={accomodation.breakfast}
           />
 
           <h2 className="accomodationsRelated__subheading">Related Accomodations</h2>
@@ -106,5 +78,3 @@ export async function getStaticProps({ params }) {
 AccomodationSpecific.proptypes = {
   accomodation: Proptypes.arrayOf(object),
 };
-
-//add error div

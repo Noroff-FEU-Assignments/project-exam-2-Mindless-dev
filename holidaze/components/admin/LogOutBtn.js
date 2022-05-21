@@ -1,6 +1,6 @@
+import { useRouter } from "next/router";
 import { useContext } from "react";
 import AuthContext from "../../context/Authorzation";
-import { useRouter } from "next/router";
 
 export function LogOutBtn() {
   const [Authorzation, setAuthorization] = useContext(AuthContext);

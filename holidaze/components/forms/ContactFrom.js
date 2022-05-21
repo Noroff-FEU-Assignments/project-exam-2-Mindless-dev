@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
 import axios from "axios";
 import { BASE_URL, CONTACT_PATH } from "../../constants/api";
-import { useState } from "react";
 import { Error } from "../errors/Error";
 import { ContactInformation } from "../contact/ContactInformation";
 
@@ -14,7 +14,7 @@ const schema = yup.object().shape({
     .required("please enter in an email")
     .matches(
       /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])+$/,
-      "must be a valid email address"
+      "Email must be a valid"
     ),
   subject: yup.string().required("Please enter a subject").min(6, "The subject must be over 6 characters"),
   message: yup.string().required("Please enter a message").min(20, "The message must be over 20 characters"),
@@ -43,8 +43,6 @@ export function ContactForm() {
           setHidden(true);
           reset();
         }, 3000);
-      } else {
-        setError("A server error occured, please try again.");
       }
     } catch (error) {
       setError("An error occured");

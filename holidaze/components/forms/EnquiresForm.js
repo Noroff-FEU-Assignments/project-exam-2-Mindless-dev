@@ -1,13 +1,13 @@
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 import { BASE_URL, ENQUIRIES_PATH } from "../../constants/api";
 import { Error } from "../errors/Error";
-import { useState } from "react";
-import PropTypes, { string } from "prop-types";
 import { useDisplay } from "../../hooks/useDisplay";
-import { ModalFormSucess } from "./formSuccess/ModalFromSuccess";
+import { ModalFormSuccess } from "./formSuccess/ModalFromSuccess";
 
 const schema = yup.object().shape({
   accomodation: yup.string(),
@@ -19,7 +19,7 @@ const schema = yup.object().shape({
       /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])+$/,
       "enter a valid email address"
     ),
-  guests: yup.number().integer().required("please select number of people"),
+  guests: yup.number().integer().required("please select number of people").typeError("Please select number of guests"),
   from: yup.string().required("please select a check in date"),
   to: yup.string().required("please select a check out date"),
 });
@@ -59,7 +59,6 @@ export function EnquiriesForm({ accomodationtitle, modalToggle }) {
         setFormDisplay(false);
       }
     } catch (error) {
-      console.log(error);
       setError("A server error occured please try again");
     }
   }
@@ -111,7 +110,7 @@ export function EnquiriesForm({ accomodationtitle, modalToggle }) {
           </button>
         </div>
       </form>
-      <ModalFormSucess
+      <ModalFormSuccess
         display={display}
         name={userinfo.name}
         email={userinfo.email}

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { Loading } from "../loading/Loading";
 import { Error } from "../errors/Error";
 import { BASE_URL, ENQUIRIES_PATH } from "../../constants/api";
-import axios from "axios";
 
 export function Enquiries() {
   const [error, setError] = useState(false);

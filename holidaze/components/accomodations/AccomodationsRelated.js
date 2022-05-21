@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Loading } from "../../components/loading/Loading";
-import { Error } from "../../components/errors/Error";
 import axios from "axios";
 import { Accomodation } from "./Accomodation";
 import { BASE_URL, ACCOMODATION_PATH } from "../../constants/api";
+import { Loading } from "../../components/loading/Loading";
+import { Error } from "../../components/errors/Error";
 
 export function AccomodationsRelated() {
   const [related, setRelated] = useState([]);
@@ -32,17 +32,17 @@ export function AccomodationsRelated() {
   }
 
   if (error) {
-    return <Error errorType="error">an Error occured</Error>;
+    return <Error errorType="error">An Error occured , Please refresh the page</Error>;
   }
 
   return related.map((relatedAccomodation) => {
     if (relatedAccomodation.featured) {
       return (
         <Accomodation
-          key={relatedAccomodation.id}
+          key={relatedAccomodation.price}
           id={relatedAccomodation.id}
           title={relatedAccomodation.title}
-          image={!relatedAccomodation.imageurl1 ? relatedAccomodation.images[0].url : relatedAccomodation.imageurl1}
+          image={relatedAccomodation.images[0].url}
           imageAlt={relatedAccomodation.imagealt1}
           price={relatedAccomodation.price}
           description={relatedAccomodation.description}

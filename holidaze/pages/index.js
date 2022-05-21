@@ -7,6 +7,7 @@ import { Layout } from "../components/layouts/Layout";
 import { BASE_URL, ACCOMODATION_PATH } from "../constants/api";
 import { Accomodation } from "../components/accomodations/Accomodation";
 import { LayoutContainer } from "../components/layouts/LayoutContainer";
+import Link from "next/link";
 
 export default function Home(props) {
   return (
@@ -32,7 +33,7 @@ export default function Home(props) {
                     key={accomodation.id}
                     id={accomodation.id}
                     title={accomodation.title}
-                    image={!accomodation.imageurl1 ? accomodation.images[0].url : accomodation.imageurl1}
+                    image={accomodation.images[0].url}
                     imageAlt={accomodation.imagealt1}
                     price={accomodation.price}
                     description={accomodation.description}
@@ -41,6 +42,10 @@ export default function Home(props) {
               }
             })}
           </div>
+          <div className="linkBtn">
+            <Link href="/accomodations">All Accomodations</Link>
+          </div>
+
           <BergenActivites />
         </LayoutContainer>
       </Layout>
@@ -50,7 +55,7 @@ export default function Home(props) {
 
 export async function getStaticProps() {
   const url = BASE_URL + ACCOMODATION_PATH;
-  let accomodations = null;
+  let accomodations;
 
   try {
     const response = await axios.get(url);

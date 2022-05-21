@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import PropTypes from "prop-types";
+
 export function Accomodation({ id, title, image, imageAlt, price, description }) {
   return (
     <div className="accomodation">
