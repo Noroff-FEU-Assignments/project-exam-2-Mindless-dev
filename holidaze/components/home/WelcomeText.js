@@ -1,4 +1,4 @@
-export function Introtext() {
+export function Welcometext() {
   return (
     <div className="intro">
       <div className="intro__image"></div>

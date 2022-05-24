@@ -3,7 +3,7 @@ import axios from "axios";
 import PropTypes, { object } from "prop-types";
 import Link from "next/link";
 import { BergenActivites } from "../components/home/BergenActivites";
-import { Introtext } from "../components/home/Introtext";
+import { Welcometext } from "../components/home/WelcomeText";
 import { Layout } from "../components/layouts/Layout";
 import { BASE_URL, ACCOMODATION_PATH } from "../constants/api";
 import { Accomodation } from "../components/accomodations/Accomodation";
@@ -22,7 +22,7 @@ export default function Home({ accomodations }) {
       <Layout>
         <div className="heroImage"></div>
         <LayoutContainer>
-          <Introtext />
+          <Welcometext />
           <h2 className="accomodationsFeatured__heading">Our Top Picks </h2>
           <div className="accomodationsFeatured">
             {accomodations.map((accomodation) => {
