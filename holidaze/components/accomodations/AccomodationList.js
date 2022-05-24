@@ -1,42 +1,22 @@
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
-import { useState, useEffect } from "react";
 import { BASE_URL, ACCOMODATION_PATH } from "../../constants/api";
 import { Loading } from "../loading/Loading";
 import { Accomodation } from "./Accomodation";
 import { Error } from "../errors/Error";
+import useApiCall from "../../hooks/useApiCall";
 
 export function AccomodationList() {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [accomodations, setAccomodations] = useState([]);
-  const [searchResults, setSearchResults] = useState([]);
+  const url = BASE_URL + ACCOMODATION_PATH;
 
-  useEffect(() => {
-    async function getAccomodations() {
-      const url = BASE_URL + ACCOMODATION_PATH;
-      try {
-        const response = await axios.get(url);
+  const [apiData, searchData, setSearchData, loading, error] = useApiCall(url);
 
-        if (response.status === 200) {
-          setSearchResults(response.data);
-          setAccomodations(response.data);
-        }
-      } catch (error) {
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    }
-    getAccomodations();
-  }, []);
-
-  function searchFunctionality() {
+  function searchFunctionality(event) {
     const searchValue = event.target.value.trim().toLowerCase();
-    const searchFilter = accomodations.filter((accomodation) => {
+    const filterBySearch = apiData.filter((accomodation) => {
       const name = accomodation.title.toLowerCase();
       const description = accomodation.description;
+
       if (name.startsWith(searchValue) || description.includes(searchValue)) {
         return true;
       }
@@ -45,7 +25,7 @@ export function AccomodationList() {
         return true;
       }
     });
-    setSearchResults(searchFilter);
+    setSearchData(filterBySearch);
   }
 
   if (loading) {
@@ -65,12 +45,12 @@ export function AccomodationList() {
         </i>
       </div>
       <div className="accomodationContainer">
-        {searchResults.length === 0 ? (
+        {searchData.length === 0 ? (
           <div className="accomodation__searchMessage">
             <p>No results matching search</p>
           </div>
         ) : (
-          searchResults.map((accomodation) => {
+          searchData.map((accomodation) => {
             return (
               <Accomodation
                 key={accomodation.id}

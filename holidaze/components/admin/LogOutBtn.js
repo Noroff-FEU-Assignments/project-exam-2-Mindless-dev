@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import { useContext } from "react";
-import AuthContext from "../../context/Authorzation";
+import AuthContext from "../../context/AuthorzationProvider";
 
 export function LogOutBtn() {
-  const [Authorzation, setAuthorization] = useContext(AuthContext);
+  const [authorization, setAuthorization] = useContext(AuthContext);
   const path = useRouter();
 
   function logOut() {

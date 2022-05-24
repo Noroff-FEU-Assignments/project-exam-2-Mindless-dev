@@ -37,7 +37,7 @@
 .enquiry,
 .contactMessage {
   margin: 16px;
-  background-color: getColour(third);
+  background-color: getColour(primary);
   display: grid;
   grid-template-columns: repeat(auto-fit, 300px);
 }

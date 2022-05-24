@@ -1,15 +1,15 @@
 import Head from "next/head";
 import axios from "axios";
 import PropTypes, { object } from "prop-types";
+import Link from "next/link";
 import { BergenActivites } from "../components/home/BergenActivites";
 import { IntroText } from "../components/home/IntroText";
 import { Layout } from "../components/layouts/Layout";
 import { BASE_URL, ACCOMODATION_PATH } from "../constants/api";
 import { Accomodation } from "../components/accomodations/Accomodation";
 import { LayoutContainer } from "../components/layouts/LayoutContainer";
-import Link from "next/link";
 
-export default function Home(props) {
+export default function Home({ accomodations }) {
   return (
     <>
       <Head>
@@ -21,12 +21,11 @@ export default function Home(props) {
       </Head>
       <Layout>
         <div className="heroImage"></div>
-
         <LayoutContainer>
           <IntroText />
           <h2 className="accomodationsFeatured__heading">Our Top Picks </h2>
           <div className="accomodationsFeatured">
-            {props.accomodations.map((accomodation) => {
+            {accomodations.map((accomodation) => {
               if (accomodation.featured) {
                 return (
                   <Accomodation
@@ -45,7 +44,6 @@ export default function Home(props) {
           <div className="linkBtn">
             <Link href="/accomodations">All Accomodations</Link>
           </div>
-
           <BergenActivites />
         </LayoutContainer>
       </Layout>

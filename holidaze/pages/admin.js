@@ -1,6 +1,6 @@
 import { Layout } from "../components/layouts/Layout";
 import { LayoutContainer } from "../components/layouts/LayoutContainer";
-import AuthContext from "../context/Authorzation";
+import AuthContext from "../context/AuthorzationProvider";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { Messages } from "../components/admin/Messages";
@@ -12,11 +12,11 @@ import { useEffect } from "react";
 import { MainHeader } from "../components/headers/MainHeader";
 
 export default function Admin() {
-  const [Authorzation, setAuthorization] = useContext(AuthContext);
+  const [authorzation, setAuthorization] = useContext(AuthContext);
   const path = useRouter();
 
   useEffect(() => {
-    if (!Authorzation) {
+    if (!authorzation) {
       path.push("/");
     }
   });

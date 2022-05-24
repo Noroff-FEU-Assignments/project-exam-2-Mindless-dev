@@ -1,7 +1,7 @@
 .searchDropdown {
   position: relative;
   &__input {
-    width: 100%;
+    width: 230px;
     border: none;
     padding: 0;
     text-indent: 37px;
@@ -14,7 +14,7 @@
   }
   &__icon {
     position: absolute;
-    top: 0px;
+    top: 4px;
     font-size: 1.4em;
     margin: 5px;
     color: getColour(secondary);

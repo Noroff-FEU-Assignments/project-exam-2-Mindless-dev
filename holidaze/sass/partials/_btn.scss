@@ -5,16 +5,16 @@ button {
   font-family: "catmaran" sans-serif;
   font-weight: 800;
   color: white;
-  box-shadow: getColour(third) 0px 3px 6px;
+  box-shadow: getColour(input) 0px 3px 6px;
 }
 
 .logOutButton,
 .btn--cancel {
   background-color: white;
   color: black;
-  padding: 1em 4em;
-  border-radius: 16px;
-  box-shadow: getColour(third) 0px 3px 6px;
+  padding: 0.6em 4em;
+  border-radius: 9px;
+  box-shadow: getColour(input) 0px 3px 6px;
 }
 
 .logOutButton {
@@ -34,8 +34,9 @@ button {
     background-color: getColour(secondary);
     text-decoration: none;
     color: white;
-    padding: 1.5em 4em;
-    box-shadow: getColour(third) 0px 3px 6px;
+    padding: 0.6em 1em;
+    box-shadow: getColour(input) 0px 3px 6px;
+    font-size: 1.4em;
   }
   a:hover {
     background-color: darken(getColour(secondary), 5);

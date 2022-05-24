@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export function ModalFormSuccess({ display, resetModal, name, guests, from, to, email }) {
   return (
     <div className={display ? "modal__success" : "modal__success--hidden"}>
@@ -26,3 +28,13 @@ export function ModalFormSuccess({ display, resetModal, name, guests, from, to, 
     </div>
   );
 }
+
+ModalFormSuccess.propTypes = {
+  display: PropTypes.bool,
+  resetModal: PropTypes.func,
+  name: PropTypes.string,
+  guests: PropTypes.number,
+  from: PropTypes.string,
+  to: PropTypes.string,
+  email: PropTypes.string,
+};

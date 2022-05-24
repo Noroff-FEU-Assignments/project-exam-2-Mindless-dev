@@ -1,19 +1,18 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
 import { useContext } from "react";
-import AuthContext from "../../context/Authorzation";
+import AuthContext from "../../context/AuthorzationProvider";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useDisplay } from "../../hooks/useDisplay";
 import { SearchDropdown } from "../search/SearchDropdown";
+import { NavLink } from "./navlink/NavLink";
+
 export function Nav() {
-  const path = useRouter();
-  const [Authorzation] = useContext(AuthContext);
+  const [authorzation] = useContext(AuthContext);
   const [login, setLogin] = useState(false);
   const [display, toggleDisplay] = useDisplay();
   useEffect(() => {
-    if (Authorzation) {
+    if (authorzation) {
       setLogin(true);
     }
   }, []);
@@ -24,25 +23,11 @@ export function Nav() {
         <FontAwesomeIcon icon={faBars} />
       </button>
       <nav className={display ? "nav" : "nav--hidden"}>
-        <ul className={`nav__inner`}>
-          <li className={path.pathname === "/" ? "nav__item--active" : "nav__item"}>
-            <Link href="/">Home</Link>
-          </li>
-          <li className={path.pathname === "/accomodations" ? "nav__item--active" : "nav__item"}>
-            <Link href="/accomodations">Accomodations</Link>
-          </li>
-          <li className={path.pathname === "/contact" ? "nav__item--active" : "nav__item"}>
-            <Link href="/contact">Contact</Link>
-          </li>
-          {login ? (
-            <li className={path.pathname === "/admin" ? "nav__item--active" : "nav__item"}>
-              <Link href="/admin"> Admin</Link>
-            </li>
-          ) : (
-            <li className={path.pathname === "/login" ? "nav__item--active" : "nav__item"}>
-              <Link href="/login"> Log in </Link>
-            </li>
-          )}
+        <ul className="nav__inner">
+          <NavLink path="/">Home</NavLink>
+          <NavLink path="/accomodations">Accomodations</NavLink>
+          <NavLink path="/contact">Contact</NavLink>
+          {login ? <NavLink path="/admin">Admin</NavLink> : <NavLink path="/login">Login</NavLink>}
           <li className="nav__search">
             <SearchDropdown />
           </li>

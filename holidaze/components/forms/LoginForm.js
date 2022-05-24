@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState, useContext } from "react";
 import { BASE_URL, AUTH_PATH } from "../../constants/api";
-import AuthContext from "../../context/Authorzation";
+import AuthContext from "../../context/AuthorzationProvider";
 import { useRouter } from "next/router";
 import { Error } from "../errors/Error";
 

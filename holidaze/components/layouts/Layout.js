@@ -10,7 +10,7 @@ export function Layout({ children }) {
       <header>
         <Link href="/">
           <a className="logo">
-            <Image src={holidazeLogo} alt="holidaze logo" height="100px" width="70px" margin="10px" />
+            <Image src={holidazeLogo} alt="holidaze logo" height="100px" width="80px" margin="10px" />
           </a>
         </Link>
         <Nav />

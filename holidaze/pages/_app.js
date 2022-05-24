@@ -1,6 +1,6 @@
-import { AuthorizationProvider } from "../context/Authorzation";
+import { AuthorizationProvider } from "../context/AuthorzationProvider";
 import "../sass/style.scss";
-import Script from "next/script";
+
 function MyApp({ Component, pageProps }) {
   return (
     <>

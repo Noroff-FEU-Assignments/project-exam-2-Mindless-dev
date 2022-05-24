@@ -6,6 +6,8 @@ import axios from "axios";
 import { BASE_URL, CONTACT_PATH } from "../../constants/api";
 import { Error } from "../errors/Error";
 import { ContactInformation } from "../contact/ContactInformation";
+import { FormGroupInput } from "./formGroup/FormGroupInput";
+import { FormGroupTextarea } from "./formGroup/formGroupTextarea";
 
 const schema = yup.object().shape({
   name: yup.string().required("Please enter your name").min(3, "Name must be over 3 characters "),
@@ -35,7 +37,6 @@ export function ContactForm() {
     try {
       const url = BASE_URL + CONTACT_PATH;
       const response = await axios.post(url, data);
-      console.log(data);
 
       if (response.status === 200) {
         setHidden(false);
@@ -53,40 +54,13 @@ export function ContactForm() {
     <div className="contact">
       <Error errorType="form__warning">{error}</Error>
       <form className="contact__form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="contact__group">
-          <label className="contact__label" htmlFor="name">
-            Name
-          </label>
-          <input className="contact__input" {...register("name")} id="name" />
-          <Error errorType="form__warning">{errors.name && errors.name.message}</Error>
-        </div>
-        <div className="contact__group">
-          <label className="contact__label" htmlFor="email">
-            Email
-          </label>
-          <input className="contact__input" {...register("email")} id="email" />
-          <Error errorType="form__warning">{errors.email && errors.email.message}</Error>
-        </div>
-        <div className="contact__group">
-          <label className="contact__label" htmlFor="subject">
-            Subject
-          </label>
-          <input className="contact__input" {...register("subject")} id="subject" />
-          <Error errorType="form__warning">{errors.subject && errors.subject.message}</Error>
-        </div>
-        <div className="contact__group">
-          <label className="contact__label" htmlFor="message">
-            Message
-          </label>
-          <textarea className="contact__textarea" {...register("message")} id="message" />
-          <Error errorType="form__warning">{errors.message && errors.message.message}</Error>
-        </div>
-
+        <FormGroupInput label="Name" form="contact" id="name" error={errors.name && errors.name.message} register={register} />
+        <FormGroupInput label="Email" form="contact" id="email" error={errors.email && errors.email.message} register={register} />
+        <FormGroupInput label="Subject" form="contact" id="subject" error={errors.subject && errors.subject.message} register={register} />
+        <FormGroupTextarea label="Message" form="contact" id="message" error={errors.message && errors.message.message} register={register} />
         <button className="contact__btn">Send Message</button>
       </form>
-
       <ContactInformation />
-
       <div className={hidden ? "contact__success--hidden" : "contact__success"}>
         <div className="contact__success__bg">
           <p className="contact__success__message"> Thank you for contacting us, have a nice day</p>

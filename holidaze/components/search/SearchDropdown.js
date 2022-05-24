@@ -1,33 +1,18 @@
 import { useState } from "react";
-import axios from "axios";
 import { BASE_URL, ACCOMODATION_PATH } from "../../constants/api";
-import { useEffect } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import useApiCall from "../../hooks/useApiCall";
 
 export function SearchDropdown() {
-  const [searchResults, setSearchResults] = useState([]);
-  const [accomodations, setAccomodations] = useState([]);
+  const url = BASE_URL + ACCOMODATION_PATH;
   const [display, setDisplay] = useState(false);
-
-  useEffect(() => {
-    async function getAccomodations() {
-      const url = BASE_URL + ACCOMODATION_PATH;
-      try {
-        const response = await axios.get(url);
-        setAccomodations(response.data);
-        setSearchResults(response.data);
-      } catch (error) {
-        console.log("error");
-      }
-    }
-    getAccomodations();
-  }, []);
+  const [apiData, searchData, setSearchData, loading, error] = useApiCall(url);
 
   function searchFunctionality() {
     const searchValue = event.target.value.trim().toLowerCase();
-    const filterBySearch = accomodations.filter((accomodation) => {
+    const filterBySearch = apiData.filter((accomodation) => {
       const name = accomodation.title.toLowerCase();
       setDisplay(true);
       if (name.startsWith(searchValue)) {
@@ -38,23 +23,23 @@ export function SearchDropdown() {
         return true;
       }
     });
-    setSearchResults(filterBySearch);
+    setSearchData(filterBySearch);
   }
 
   return (
     <div className="searchDropdown">
       <input className="searchDropdown__input" onKeyUp={searchFunctionality} placeholder="find your accomodation" />
       <div className="searchDropdown__icon">
-        <FontAwesomeIcon icon={faSearch} />
+        <FontAwesomeIcon icon={faSearch} width="1em" />
       </div>
       <div className="searchDropdown__outerContainer">
         <ul className={display ? "innerContainer" : "innerContainer--hidden"}>
-          {searchResults.length === accomodations.length ? (
+          {searchData.length === apiData.length ? (
             ""
-          ) : searchResults.length === 0 ? (
+          ) : searchData.length === 0 ? (
             <p className="innerContainer__noSearchResult">No search results match</p>
           ) : (
-            searchResults.map((result) => {
+            searchData.map((result) => {
               return (
                 <Link key={result.title} href={`/accomodation/${result.id}`}>
                   <a className="search__link">{`${result.title} | ${result.price} kr`}</a>

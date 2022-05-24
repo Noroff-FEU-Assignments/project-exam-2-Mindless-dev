@@ -7,7 +7,7 @@ export function Accomodation({ id, title, image, imageAlt, price, description })
     <div className="accomodation">
       <Link href={`/accomodation/${id}`}>
         <a>
-          <Image src={image} alt={`${imageAlt}`} height="390" width="316" />
+          <Image src={image} alt={imageAlt} height="390" width="316" />
         </a>
       </Link>
 

@@ -4,20 +4,22 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { useState, useContext } from "react";
 import { BASE_URL, ACCOMODATION_PATH } from "../../constants/api";
-import AuthContext from "../../context/Authorzation";
+import AuthContext from "../../context/AuthorzationProvider";
 import { FormSuccess } from "./formSuccess/FormSuccess";
 import { Error } from "../errors/Error";
+import { FormGroupInput } from "./formGroup/FormGroupInput";
+import { FormGroupTextarea } from "./formGroup/formGroupTextarea";
 
 const schema = yup.object().shape({
   title: yup.string().required("Please enter a accomodation title").min(8, "The title must be over 8 characters"),
   description: yup.string().required("Please enter a description").min(20, "The description must be over 20 characters"),
   price: yup.number().required("please enter a Price").min(99, "The price must be over 99kr").typeError("Please enter a price"),
-  image1: yup.mixed().test("imageUpload", "please upload a accomodation Image", (value) => {
+  image1: yup.mixed().test("imageUpload", "Please upload a jpeg", (value) => {
     if (value.length != 0 && value[0].type === "image/jpeg") {
       return value;
     }
   }),
-  image2: yup.mixed().test("imageUpload", "please upload a room image", (value) => {
+  image2: yup.mixed().test("imageUpload", "Please upload a jpeg", (value) => {
     if (value.length != 0 && value[0].type === "image/jpeg") {
       return value;
     }
@@ -86,6 +88,7 @@ export function AccomodationForm() {
         }, 3000);
       }
     } catch (error) {
+      setSubmitting(false);
       setError("an error Occoured please try to refresh the page");
     }
   }
@@ -96,21 +99,29 @@ export function AccomodationForm() {
         <Error errorType="form__warning">{error}</Error>
         <div className="accomodationForm__container">
           <div className="accomodationForm__layout">
-            <div className="accomodationForm__group">
-              <label htmlFor="title">Accomodation title</label>
-              <input className="accomodationForm__input" {...register("title")} id="title" />
-              <Error errorType="form__warning">{errors.title && errors.title.message}</Error>
-            </div>
-            <div className="accomodationForm__group">
-              <label htmlFor="description"> Accomodation Description</label>
-              <textarea className="accomodationForm__textarea" {...register("description")} id="description" />
-              <Error errorType="form__warning">{errors.description && errors.description.message}</Error>
-            </div>
-            <div className="accomodationForm__group">
-              <label htmlFor="startingPrice">Starting Price</label>
-              <input className="accomodationForm__input" {...register("price")} id="price" />
-              <Error errorType="form__warning">{errors.price && errors.price.message}</Error>
-            </div>
+            <FormGroupInput
+              error={errors.title && errors.title.message}
+              id="title"
+              form="accomodationForm"
+              register={register}
+              label="Accomodation Title"
+            />
+
+            <FormGroupTextarea
+              id="description"
+              label="Accomodation Description"
+              form="accomodationForm"
+              register={register}
+              error={errors.description && errors.description.message}
+            />
+
+            <FormGroupInput
+              error={errors.price && errors.price.message}
+              id="price"
+              form="accomodationForm"
+              register={register}
+              label="Starting Price"
+            />
 
             <div className="accomodationForm__ammeneties">
               <h3>Ammeneties</h3>
@@ -136,21 +147,26 @@ export function AccomodationForm() {
               <Error errorType="form__warning">{errors.image1 && errors.image1.message}</Error>
             </div>
 
-            <div className="accomodationForm__group">
-              <label htmlFor="imagealt1">Accomodation image description</label>
-              <input className="accomodationForm__input" {...register("imagealt1")} id="imagealt1" />
-              <Error errorType="form__warning"> {errors.imagealt1 && errors.imagealt1.message}</Error>
-            </div>
+            <FormGroupInput
+              label="Accomodation image description"
+              id="imagealt1"
+              error={errors.imagealt1 && errors.imagealt1.message}
+              register={register}
+              form="accomodationForm"
+            />
             <div className="accomodationForm__group">
               <label htmlFor="image2"> Room Image </label>
               <input type="file" className="accomodationForm__fileInput" {...register("image2")} id="image2" />
               <Error errorType="form__warning">{errors.image2 && errors.image2.message}</Error>
             </div>
-            <div className="accomodationForm__group">
-              <label htmlFor="imagealt2">Room Image Description</label>
-              <input className="accomodationForm__input" {...register("imagealt2")} id="imagealt2" />
-              <Error errorType="form__warning">{errors.imagealt2 && errors.imagealt2.message}</Error>
-            </div>
+
+            <FormGroupInput
+              label="Room image description"
+              id="imagealt2"
+              error={errors.imagealt2 && errors.imagealt2.message}
+              register={register}
+              form="accomodationForm"
+            />
           </div>
         </div>
         <button type="submit" className="accomodationForm__submitBtn">
