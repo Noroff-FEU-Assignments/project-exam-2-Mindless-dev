@@ -20,7 +20,7 @@ export function AccomodationsRelated() {
     if (relatedAccomodation.featured) {
       return (
         <Accomodation
-          key={relatedAccomodation.price}
+          key={relatedAccomodation.title}
           id={relatedAccomodation.id}
           title={relatedAccomodation.title}
           image={relatedAccomodation.images[0].url}
