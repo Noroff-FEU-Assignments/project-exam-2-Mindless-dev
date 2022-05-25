@@ -64,7 +64,7 @@ export function AccomodationDetailed({
           breakfast={breakfast}
         />
         <button className="accomodationDetailed__btn" onClick={toggleModal}>
-          Enquiry
+          Make Enquiry
         </button>
       </div>
 
