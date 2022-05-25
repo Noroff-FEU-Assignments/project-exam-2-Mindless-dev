@@ -11,7 +11,7 @@
   justify-content: center;
   flex-wrap: wrap;
   background-color: white;
-  max-width: 1088px;
+  max-width: 600px;
   margin: auto;
 
   &__form {
@@ -82,14 +82,16 @@
     }
   }
 
-  @media (min-width: 904px) {
+  @media (min-width: 920px) {
     justify-content: space-evenly;
+    max-width: 1088px;
   }
 }
 
 .contact__info {
   align-self: center;
-  margin-bottom: 1em;
+  margin: 1em;
+
   &__section {
     display: flex;
     margin: 10px;
@@ -102,7 +104,7 @@
   }
   &__logo {
     background-image: url("../../images/logo/holidazeLogo.svg");
-    height: 100px;
+    height: 125px;
     width: 100px;
     margin: 40px auto auto auto;
     background-repeat: no-repeat;
