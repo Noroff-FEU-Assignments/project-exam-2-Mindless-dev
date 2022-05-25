@@ -43,17 +43,22 @@ export function LoginForm() {
   return (
     <form className="login__form" onSubmit={handleSubmit(onSubmit)}>
       <Error errorType="form__warning">{loginError}</Error>
-      <label className="login__label" htmlFor="userName">
-        Username
-      </label>
-      <input className="login__input" {...register("identifier")} id="userName" />
+      <div className="login__group">
+        <label className="login__label" htmlFor="userName">
+          Username
+        </label>
+        <input className="login__input" {...register("identifier")} id="userName" />
+        <Error errorType="form__warning">{errors.identifier && errors.identifier.message}</Error>
+      </div>
 
-      <Error errorType="form__warning">{errors.identifier && errors.identifier.message}</Error>
-      <label className="login__label" htmlFor="password">
-        Password
-      </label>
-      <input className="login__input" type="password" {...register("password")} id="password" />
-      <Error errorType="form__warning">{errors.password && errors.password.message}</Error>
+      <div className="login__group">
+        <label className="login__label" htmlFor="password">
+          Password
+        </label>
+        <input className="login__input" type="password" {...register("password")} id="password" />
+        <Error errorType="form__warning">{errors.password && errors.password.message}</Error>
+      </div>
+
       <button className="login__btn">{loggingIn ? loggingIn : "Log In"}</button>
     </form>
   );

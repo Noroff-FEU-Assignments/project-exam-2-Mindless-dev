@@ -156,9 +156,10 @@ form {
 /*__________ login ___________*/
 
 .login {
+  align-items: center;
   &__form {
     max-width: 354px;
-    margin: auto;
+    margin: 40px auto;
     min-height: 400px;
     justify-content: center;
     display: flex;
@@ -167,10 +168,9 @@ form {
   }
 
   &__input {
-    width: 90%;
+    width: 100%;
     align-self: center;
     height: 50px;
-    margin: 5px auto 20px auto;
     font-size: 1em;
     font-family: "poppins", sans-serif;
   }
@@ -178,7 +178,7 @@ form {
   &__btn {
     width: 90%;
     align-self: center;
-    padding: 0.5em 2em;
+    padding: 0.6em 2em;
     margin-bottom: 16px;
   }
 
@@ -187,11 +187,13 @@ form {
   }
 
   &__label {
-    margin-left: 20px;
-    margin-bottom: 6px;
     font-family: "poppins", sans-serif;
     font-weight: 400;
     font-size: 1.4em;
+  }
+  &__group {
+    max-width: 90%;
+    margin: 10px auto;
   }
 }
 
@@ -379,5 +381,9 @@ form {
 
   &__featured {
     font-size: 1.3em;
+  }
+  &__ammeneties > input,
+  &__featured > input {
+    margin: 10px;
   }
 }

@@ -91,4 +91,12 @@ header {
 
 .logo {
   margin: 10px;
+  span {
+    margin: 4px !important;
+  }
+  @media (min-width: 900px) {
+    span {
+      margin: 0 !important;
+    }
+  }
 }

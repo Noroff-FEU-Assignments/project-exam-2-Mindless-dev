@@ -14,12 +14,12 @@ const schema = yup.object().shape({
   title: yup.string().required("Please enter a accomodation title").min(8, "The title must be over 8 characters"),
   description: yup.string().required("Please enter a description").min(20, "The description must be over 20 characters"),
   price: yup.number().required("please enter a Price").min(99, "The price must be over 99kr").typeError("Please enter a price"),
-  image1: yup.mixed().test("imageUpload", "Please upload a jpeg", (value) => {
+  image1: yup.mixed().test("imageUpload", "Please upload a image (jpeg)", (value) => {
     if (value.length != 0 && value[0].type === "image/jpeg") {
       return value;
     }
   }),
-  image2: yup.mixed().test("imageUpload", "Please upload a jpeg", (value) => {
+  image2: yup.mixed().test("imageUpload", "Please upload a image (jpeg)", (value) => {
     if (value.length != 0 && value[0].type === "image/jpeg") {
       return value;
     }

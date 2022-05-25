@@ -24,6 +24,7 @@ const schema = yup.object().shape({
 export function ContactForm() {
   const [hidden, setHidden] = useState(true);
   const [error, setError] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
   const {
     register,
     handleSubmit,
