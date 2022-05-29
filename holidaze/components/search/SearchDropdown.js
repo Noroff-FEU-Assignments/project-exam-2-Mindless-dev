@@ -4,11 +4,16 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import useApiCall from "../../hooks/useApiCall";
+import { Error } from "../errors/Error";
 
 export function SearchDropdown() {
   const url = BASE_URL + ACCOMODATION_PATH;
   const [display, setDisplay] = useState(false);
   const [apiData, searchData, setSearchData, loading, error] = useApiCall(url);
+
+  if (error) {
+    return <Error errorType="error">an error occured please refresh</Error>;
+  }
 
   function searchFunctionality() {
     const searchValue = event.target.value.trim().toLowerCase();
@@ -28,7 +33,12 @@ export function SearchDropdown() {
 
   return (
     <div className="searchDropdown">
-      <input className="searchDropdown__input" onKeyUp={searchFunctionality} placeholder="find your accomodation" />
+      <input
+        className="searchDropdown__input"
+        onKeyUp={searchFunctionality}
+        disabled={loading ? true : false}
+        placeholder={loading ? "loading.." : "find your accomodation"}
+      />
       <div className="searchDropdown__icon">
         <FontAwesomeIcon icon={faSearch} width="1em" />
       </div>
