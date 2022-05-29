@@ -12,7 +12,7 @@ export function SearchDropdown() {
   const [apiData, searchData, setSearchData, loading, error] = useApiCall(url);
 
   if (error) {
-    return <Error errorType="error">an error occured please refresh</Error>;
+    return <Error errorType="form__warning">an error occured please refresh</Error>;
   }
 
   function searchFunctionality() {
@@ -37,7 +37,7 @@ export function SearchDropdown() {
         className="searchDropdown__input"
         onKeyUp={searchFunctionality}
         disabled={loading ? true : false}
-        placeholder={loading ? "loading.." : "find your accomodation"}
+        placeholder={loading ? "loading.." : "Find your accomodation"}
       />
       <div className="searchDropdown__icon">
         <FontAwesomeIcon icon={faSearch} width="1em" />
