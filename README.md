@@ -1,127 +1,109 @@
-log in details:
-username: admin
-password: Pass1234
+## Log In Details
 
-# Project Exam 2
+- Username: Admin
+- Password: Pass1234
 
-There are two options with this Project Exam.
-You need to only choose one and please follow the deliveries carefully.
+# Holidaze
 
-## Goal
+![image](https://res.cloudinary.com/dmypm1x6b/image/upload/v1654120953/holidaze_zo7txe.jpg)
 
-To take the skills learned over the last two years and take on an extensive project where the finished product should reflect the candidate's general development capabilities, in addition to visual and technical skills.
+An accommodation booking website Where users can make enquiries for accommodations, contact the admin via a contact form
+Search for accommodations and where an admin user can see enquires and contact requests and create new accommodations.
 
-## Brief
+## Description
 
-For this assignment you have the choice between getting a real world client that you will manage and build a website for, or a case study to make a hotel booking website.
+### Header
 
-Whatever project you choose, the final submission must have the following:
+- logo and links
+- Autodropdown search that gives links to accommodations upon search, displays a message if no search results.
 
-- A Gantt chart planning the project
-- A style guide
-- An Adobe XD prototype
-- Use a CSS Pre-processor and BEM if not using CSS Modules, Styled Components, etc
-- Use a React.js or Next.js
-- You can use regular JS or TypeScript
-- Please use create-react-app or create-next-app to generate a skeleton project for yourself
-- A fully working website that fulfils the brief
+### Home Page
 
-## Option 1: Real World Client
+- Hero image of showcasing Bryggen in bergen
+- Intro text with an image from the cablecar going up to ulrikken
+- Featured accommodations under "Our top picks" fetched with axios.
 
-Make a website or application for a real world client. The project should offer a significant enough scope to be able to show off your skills as a developer, and hopefully the project can form a central part of your portfolio for when you start applying for jobs.
+### Accomodations Page
 
-The process followed for the project will differ depending on the client and the requirements of their project.
+- Search for accommodations by name and description.
+- List of all accommodations.
+- When there are no search results displays a message.
 
-Note: The project has to have a big enough scope to show off the skills learned over your studies. An example of the level we’re expecting would be a website where administrators can add, update, remove products, and users can search, filter, and contact administrators. If you are unsure if your potential client’s brief is strong enough for the Project Exam 2, please message your tutors. Use of a JavaScript Framework is a requirement.
+### Log in Page
 
-If you do a Real World Client, your project will need to have the following:
+- React hook form with yup validation
+- Sends log-in info with Axios to the api, displays error if login is unsuccessful.
+- If login is successfully made, stores user data in local storage and redirects the admin user to the admin page.
 
-### Visitor side:
+### Contact Page
 
-- Home page
-- Search bar typeahead (auto dropdown to match the products or services the real world client has)
-- A list of products or services either on the home page or a dedicated page
-- A specific page for a product or service
-- A contact form that sends a message and which can be viewed on the admin side. This can be a modal or a page.
-- An enquiry page, either as a modal or separate page
+- Contact form made with react hook form and yup validation.
+- Contact form if successfully filled out will send the message to the api to be displayed on the admin panel.
+- Displays success message if Axios request was filled out successfully and resets the form.
 
-### Admin side:
+### Accomodation Page
 
-- Login section that makes use of JWT tokens
-- List of enquiries and new enquiries appear when user submits the form on the enquiry page
-- List of messages from the contact form
-- The admin can create a new product/service
+- Uses the functions getStaticPaths and getStaticProps, with the params from getStatic Paths to get the id of the accommodation and to provide the accommodation that the user tries to access.
 
-### Recommended Process
+- Displays a single accommodation with an image of the accommodation and an image of the room and a description of the accommodation.
 
-Week 1 to 3: Finding client, Planning and Design
-Week 4 to 6: Coding
-Week 7: Bug Fixing
+- Image section has two images with one one of them set as the main image, and two thumbnails, pressing the thumbnail of an image changes the main image to the thumbnail that was pressed.
 
-### Level 1 Process
+- Users can send information to do an enquiry with a modal
 
-- Use your networks and connections to find a client that needs a website or application built.
-- Understand their requirements and come up with a functional specification for the project. You can write the functional specification using “System shall” statements. For example, “The system shall allow visitors to search for an article”
-- Create a Gantt chart for the project, planning out your deliverables for the client.
-- Make a design style guide and then take this style guide and create an Adobe XD prototype. Present to the client for feedback.
-- Develop the site ensuring you deliver all that is listed in your functional specification.
-- Test the website on various platforms and browsers. Ensure the site is bug-free and working before presenting to the client.
-- Go through a final round of changes before going live with the website.
-- Write a report on your process and decisions for the project. Please use the report template provided.
+- Modal with Accommodation information and a form created with react hookform and yup validation.
 
-### Submission
+- Axios request gets made on submit if the request is successful the users get their information displayed and a message confirming that the enquiry is made.
 
-End of week 3: Functional specification, Gantt chart, style guide, and Adobe XD prototype
-End of week 7: Report with link to website, and all files in a compressed ZIP
+### Admin Page
 
-## Option 2: Hotel Booking Website
+- Log out button that logs out the user by removing user info from local storage.
+- Accommodation form with react hook form and yup validation for creating new accommodations.
+- Displays error messages if the form is filled out incorrectly.
+- If the form is correctly filled out it sends the information and JWT with axios post.
+- If the post request is successful displays a success message and accommodation gets added to the api.
+- List of enquiries made by users fetched with axios.
+- List of messages made by users fetched with axios.
 
-A local tourism agency in Bergen is launching a new website called ‘Holidaze’ for visitors to the area to be able to find hotels, B&Bs and guesthouses, and for the accommodation owners to receive enquiries.
+## Built With
 
-The project requires you to create the visitor side of the website where users can search accommodation and make enquiries, as well as the administration side where properties can be added and enquiries managed.
+- [Next js](https://nextjs.org/)
+- [Scss](https://sass-lang.com/)
+- [Strapi] (https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html)
 
-You will need to create an API to store the data for the establishments, enquiries and contact submissions. You can choose to use WordPress or Strapi as a Headless CMS, but it is very important that the API is deployed and publicly available. Please do not submit any files for your API. Only submit the website you have created.
+## Getting Started
 
-## Requirements for the Website
+### Installing
 
-### Visitor Side
+1. Clone the repo:
 
-- Homepage
-- Search bar typeahead (auto dropdown with hotel names that match what has been typed)
-- A results page with all hotels
-- The hotel specific page which displays all details about the hotel
-- An enquiry page either modal or separate page
-- A contact page (different to enquiry page) which goes to the admin for Holidaze
+```bash
+git clone https://github.com/Noroff-FEU-Assignments/project-exam-2-Mindless-dev.git
+```
 
-### Admin side
+2. Install the dependencies:
 
-- Create a login section that makes use of JWT tokens
-- List of enquiries and new enquiries appear when user submits the form on the enquiry page
-- List of messages from contact form
-- The admin can create a new establishment
+```
+npm install
+```
 
-### Recommended Process
+### Running
 
-Week 1 and 2: Planning and Design
-Week 3 to 6: Coding
-Week 7: Bug Fixing
+To run the app, run the following commands:
 
-### Level 1 Process
+```bash
+npm run dev
+```
 
-- Start by planning out the project.
-- Next begin your research of likely users and browse competitor websites for ideas.
-- Create a style guide
-- Build an Adobe XD prototype (or you can use Sketch or Figma).
-- Start coding.
-- Once you’ve finished development, start looking for bugs and ensure the site functions well on all viewports. Test the code on different devices. Because your API is public, the code shouldn’t rely on a local API.
-- Refactor your code.
-- Ask another student to look over your code and ask them if they can see how it might be better implemented. This is important to get an outside view on your code. Please attach this feedback to your report.
-- Add the login details for your admin side at the top of this README.md file so that it's easy for the marker to spot.
+## Contact
 
-### Submission
+[My LinkedIn page](https://www.linkedin.com/in/kenny-holmen-b853b4a1)
 
-End of week 7: Report with link to website or a Github link and feedback from code review, and all files in a compressed ZIP. Login details added to the README.md.
+## Acknowledgments
 
-### Resources
+```
+Hooks>UseLocalStorage
 
-Report template included in the repo.
+```
+
+UseLocalStorage hook is not made by me and is taken from https://usehooks.com/useLocalStorage.
