@@ -1,6 +1,6 @@
 ## Log In Details
 
-- Username: Admin
+- Username: admin
 - Password: Pass1234
 
 # Holidaze
