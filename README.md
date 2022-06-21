@@ -1,6 +1,6 @@
 ## Log In Details
 
-- Username: Admin
+- Username: admin
 - Password: Pass1234
 
 # Holidaze
@@ -69,7 +69,7 @@ Search for accommodations and where an admin user can see enquires and contact r
 
 - [Next js](https://nextjs.org/)
 - [Scss](https://sass-lang.com/)
-- [Strapi] (https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html)
+- [Strapi](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html)
 
 ## Getting Started
 
@@ -102,7 +102,7 @@ npm run dev
 ## Acknowledgments
 
 ```
-Hooks>UseLocalStorage
+hooks>UseLocalStorage
 
 ```
 
