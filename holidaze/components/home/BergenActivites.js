@@ -11,7 +11,7 @@ export function BergenActivites() {
           <div className="bergenActivities__image2"></div>
           <h3>Hikning</h3>
         </div>
-        <div className="bergenActivites__container">
+        <div className="bergenActivites__Container">
           <div className="bergenActivities__image3"></div>
           <h3>Culture and shopping</h3>
         </div>
